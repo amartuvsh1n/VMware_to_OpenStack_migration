@@ -1,0 +1,19 @@
+[
+  {
+    "dsName":"name1",
+    "vms": [
+      {
+        "name": "test 1"
+      },
+      {
+        "name": "test 2"
+      }
+    ]
+  },
+  {
+   "dsName":"name2", 
+    {
+      "name":"vm name 1"
+    }
+  }
+]  
