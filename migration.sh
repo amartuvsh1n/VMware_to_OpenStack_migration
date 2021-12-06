@@ -29,9 +29,16 @@ migration()
                 curl  -k -u $Username:$Password "$base_url/$name/$name$sub_name.vmdk?dcPath=$dcPath&dsName=$dsName" > "$vmname$sub_name.vmdk"
 
                 # convert vmdk to qcow2
-                if [ -z $sub_name ] 
+                if [ -f "$vmname.vmdk" ] 
                 then
-                    qemu-img convert -f vmdk -O qcow2 "$vmname$sub_name.vmdk" "$vmname$sub_name.qcow2"
+                    # convert to qcow2
+                    qemu-img convert -f vmdk -O qcow2 "$vmname.vmdk" "$vmname.qcow2"
+                    # create vm from qcow2
+                    virt-install --name=linuxconfig-vm \
+                    --vcpus=1 \
+                    --memory=1024 \
+                    --disk="$vmname.qcow2" \
+                    --os-variant=$ID
                 fi
 
             done
@@ -40,13 +47,13 @@ migration()
 }
 
 
-case $OS in
+case $ID in
     "centos") dnf-centos
         migration
     ;;
     "ubuntu") apt-ubuntu 
         migration
     ;;
-    "*") echo "can't find $OS; " ;;
+    "*") echo "can't find $ID; " ;;
 esac
 
