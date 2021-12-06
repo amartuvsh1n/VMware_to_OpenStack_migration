@@ -37,8 +37,8 @@ migration()
                     virt-install --name=linuxconfig-vm \
                     --vcpus=1 \
                     --memory=1024 \
-                    --disk="$vmname.qcow2" \
-                    --os-variant=$ID
+                    --disk path=$(pwd)/"$vmname.qcow2",bus=virtio \
+                    --graphics none 
                 fi
 
             done
