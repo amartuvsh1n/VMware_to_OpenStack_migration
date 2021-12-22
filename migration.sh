@@ -54,10 +54,21 @@ migration()
                 echo openstack volume create --bootable  --image "$vmname" --size $size "$vmname volume" 
                 openstack volume create --bootable  --image "$vmname" --size $size "$vmname volume" 
                 portid=$(openstack port create --network $network --fixed-ip subnet=$subnet,ip-address="$ip" --format value -c id "ip for $vmanem")
-                #echo portID=$portid
-                echo openstack server create --flavor "$flavor" --volume "$vmname volume" --nic port-id=$portid "$vmname"
-                openstack server create --flavor "$flavor" --volume "$vmname volume" --nic port-id=$portid "$vmname"
-                #echo "done date: $date" |$ tee /var/log/out.log
+                echo portID=$portid
+                
+                i=0;
+                while (( 0 < size ))
+                do
+                    if openstack volume show "$vmname volume" --format value -c bootable 
+                    then                   
+                        echo openstack server create --flavor "$flavor" --volume "$vmname volume" --nic port-id=$portid "$vmname"
+                        openstack server create --flavor "$flavor" --volume "$vmname volume" --nic port-id=$portid "$vmname"
+                        break
+                    else
+                        echo -e -n "\r$i:wait... bootable: false"
+                    fi
+                done
+                echo "done date: $date" |$ tee /var/log/out.log
             fi
 
         done
