@@ -3,17 +3,34 @@
     "dsName":"name1",
     "vms": [
       {
-        "name": "test 1"
+        "name": "test 1",
+        "disk_size": "",
+        "ip":"",
+        "flavor":""
       },
       {
-        "name": "test 2"
+        "name": "test 2",
+        "disk_size": "",
+        "ip":"",
+        "flavor":""
       }
     ]
   },
   {
-   "dsName":"name2", 
-    {
-      "name":"vm name 1"
-    }
+   "dsName":"name2",
+    "vms": [
+      {
+        "name": "test 1",
+        "disk_size": "",
+        "ip":"",
+        "flavor":""
+      },
+      {
+        "name": "test 2",
+        "disk_size": "",
+        "ip":"",
+        "flavor":""
+      }
+    ]
   }
 ]  
