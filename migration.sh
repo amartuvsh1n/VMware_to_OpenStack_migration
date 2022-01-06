@@ -47,8 +47,10 @@ migration()
                 echo intall virt-io
                 virt-v2v -i disk "$vmname.qcow2" -o local -os "./"
                 # or
-                virt-customize -a "$vmname.qcow2" --update
-                virt-customize -a "$vmname.qcow2" --install virtio
+                #virt-customize -a "$vmname.qcow2" --update
+                #virt-customize -a "$vmname.qcow2" --install virtio
+                # write to disk
+                #qemu-img convert -p -f qcow2 -O raw vm_name.qcow2 /dev/vdb
                 echo openstack image create --disk-format qcow2 --container-format bare --file "$vmname-sda" --public "$vmname"
                 openstack image create --disk-format qcow2 --container-format bare --file "$vmname-sda" --public "$vmname"
                 echo openstack volume create --bootable  --image "$vmname" --size $size "$vmname volume" 
