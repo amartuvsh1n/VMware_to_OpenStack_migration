@@ -50,9 +50,11 @@ migration()
                 #virt-customize -a "$vmname.qcow2" --update
                 #virt-customize -a "$vmname.qcow2" --install virtio
                 # write to disk
-                #qemu-img convert -p -f qcow2 -O raw vm_name.qcow2 /dev/vdb
-                #sudo parted /dev/vdb unit s print 
-                #fix
+                #qemu-img dd -f qcow2 -O raw if=test-host.qcow2 of=/dev/vdb bs=4M
+                # if use without dd
+                #   qemu-img convert -p -f qcow2 -O raw vm_name.qcow2 /dev/vdb
+                #   sudo parted /dev/vdb unit s print 
+                #   fix
                 echo openstack image create --disk-format qcow2 --container-format bare --file "$vmname-sda" --public "$vmname"
                 openstack image create --disk-format qcow2 --container-format bare --file "$vmname-sda" --public "$vmname"
                 echo openstack volume create --bootable  --image "$vmname" --size $size "$vmname volume" 
