@@ -1,5 +1,7 @@
 # VMware_to_KVM_migration
 
+:exclamation: failed on centos with lvm
+
 :exclamation: одоогоор ubuntu,centos үйлдлийн систем дээр байгаа
 
 :exclamation: convert node-н disk, cpu-г хүрэлцэхүйц байлгаарай
