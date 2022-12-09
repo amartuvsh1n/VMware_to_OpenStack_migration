@@ -2,7 +2,7 @@
 
 :exclamation: failed on centos with lvm
 
-:exclamation: одоогоор ubuntu,centos үйлдлийн систем дээр байгаа
+:exclamation: одоогоор lvm-гүй ubuntu,centos үйлдлийн систем туршиж үзсэн байгаа
 
 :exclamation: convert node-н disk, cpu-г хүрэлцэхүйц байлгаарай
 
